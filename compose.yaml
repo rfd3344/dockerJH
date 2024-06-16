@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./react-project
+    ports:
+      - 5173:5173
+    # depends_on:
+    #   - backend
+
+  backend:
+    build:
+      context: ./express-project
+    ports:
+      - 3000:3000
