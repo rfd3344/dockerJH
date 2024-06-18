@@ -1,7 +1,6 @@
 {
   "scripts": {
-    "start:test": "node src/index.js",
-    "dev": "nodemon src/index.js "
+    "start": "nodemon src/index.js"
   },
   "dependencies": {
     "express": "^4.19.2",

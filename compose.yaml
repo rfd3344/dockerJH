@@ -3,11 +3,11 @@ version: '3.8'
 services:
   frontend:
     build:
-      context: ./react-project
+      context: ./vite-react
     ports:
       - 5173:5173
     volumes:
-      - ./react-project:/app # ./react-project is host directory, /app is container directory
+      - ./vite-react:/app # ./vite-react is host directory, /app is container directory
       - /app/node_modules
     environment:
       - CHOKIDAR_USEPOLLING=true # watch file changes on host directory
@@ -22,6 +22,27 @@ services:
     volumes:
       - ./express-project:/app
       - /app/node_modules
-    command: npm run dev
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+
+  frontend2:
+    build:
+      context: ./create-react-app
+    ports:
+      - 3001:3000
+    volumes:
+      - ./create-react-app:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+
+  backend2:
+    build:
+      context: ./backend-mongo
+    ports:
+      - 3003:3000
+    volumes:
+      - ./backend-mongo:/app
+      - /app/node_modules
     environment:
       - CHOKIDAR_USEPOLLING=true
