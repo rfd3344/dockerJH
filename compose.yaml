@@ -6,6 +6,11 @@ services:
       context: ./react-project
     ports:
       - 5173:5173
+    volumes:
+      - ./react-project:/app # ./react-project is host directory, /app is container directory
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true # watch file changes on host directory
     # depends_on:
     #   - backend
 
@@ -14,3 +19,9 @@ services:
       context: ./express-project
     ports:
       - 3000:3000
+    volumes:
+      - ./express-project:/app
+      - /app/node_modules
+    command: npm run dev
+    environment:
+      - CHOKIDAR_USEPOLLING=true
