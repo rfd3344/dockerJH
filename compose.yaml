@@ -36,13 +36,13 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
 
-  backend-mongo:
-    build:
-      context: ./backend-mongo
-    ports:
-      - 3344:3000
-    volumes:
-      - ./backend-mongo:/app
-      - /app/node_modules
-    environment:
-      - CHOKIDAR_USEPOLLING=true
+  # backend-mongo:
+  #   build:
+  #     context: ./backend-mongo
+  #   ports:
+  #     - 3344:3000
+  #   volumes:
+  #     - ./backend-mongo:/app
+  #     - /app/node_modules
+  #   environment:
+  #     - CHOKIDAR_USEPOLLING=true
