@@ -1,0 +1,7 @@
+{
+  "name": "docker-jh",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "docker compose up"
+  }
+}
