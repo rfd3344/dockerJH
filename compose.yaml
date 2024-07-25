@@ -36,6 +36,14 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
 
+  # redis:
+  #   image: redis
+  #   container_name: redis-image
+  #   ports:
+  #     - '6379:6379'
+  #   volumes:
+  #     - ./data:/data
+
   # backend-mongo:
   #   build:
   #     context: ./backend-mongo

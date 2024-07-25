@@ -6,6 +6,13 @@ app.get('/', (req, res) => {
   res.send('Hello World! 222');
 });
 
+
+app.use('/test', require('./test'));
+
+app.use('/redis', require('./redis'));
+
+
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
