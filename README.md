@@ -1,5 +1,8 @@
 # dockerJH
 
+1. example for frontend React project setup, including vite and nextjs
+2. connection with different database using nodejs, which is most important part
+
 ### containers
 
 - react-vite (sampleOnly)
