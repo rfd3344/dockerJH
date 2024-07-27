@@ -8,10 +8,10 @@ app.get('/', (req, res) => {
 
 
 app.use('/test', require('./test'));
-app.use('/redis', require('./redis'));
-app.use('/elasticsearch', require('./elasticsearch'));
 app.use('/postgres', require('./postgres'));
 app.use('/mongo', require('./mongo'));
+app.use('/redis', require('./redis'));
+app.use('/elasticsearch', require('./elasticsearch'));
 
 
 app.listen(port, () => {

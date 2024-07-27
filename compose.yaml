@@ -1,29 +1,27 @@
 version: '3.8'
 
 services:
-  react-vite:
-    build:
-      context: ./react-vite
-    ports:
-      - 3341:3000
-    volumes:
-      - ./react-vite:/app # ./vite-react is host directory, /app is container directory
-      - /app/node_modules
-    environment:
-      - CHOKIDAR_USEPOLLING=true # watch file changes on host directory
-    # depends_on:
-    #   - backend
+  # react-vite:
+  #   build:
+  #     context: ./react-vite
+  #   ports:
+  #     - 3341:3000
+  #   volumes:
+  #     - ./react-vite:/app # ./react-vite is host directory, /app is container directory
+  #     - /app/node_modules
+  #   environment:
+  #     - CHOKIDAR_USEPOLLING=true # watch file changes on host directory
 
-  react-nextjs:
-    build:
-      context: ./react-nextjs
-    ports:
-      - 3343:3000
-    volumes:
-      - ./react-nextjs:/app
-      - /app/node_modules
-    environment:
-      - CHOKIDAR_USEPOLLING=true
+  # react-nextjs:
+  #   build:
+  #     context: ./react-nextjs
+  #   ports:
+  #     - 3343:3000
+  #   volumes:
+  #     - ./react-nextjs:/app
+  #     - /app/node_modules
+  #   environment:
+  #     - CHOKIDAR_USEPOLLING=true
 
   node-express:
     build:
@@ -35,7 +33,8 @@ services:
       - /app/node_modules
     environment:
       - CHOKIDAR_USEPOLLING=true
-
+    # depends_on:
+    #   - backend
   # redis:
   #   image: redis
   #   container_name: redis-image
