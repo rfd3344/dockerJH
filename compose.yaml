@@ -35,21 +35,3 @@ services:
       - CHOKIDAR_USEPOLLING=true
     # depends_on:
     #   - backend
-  # redis:
-  #   image: redis
-  #   container_name: redis-image
-  #   ports:
-  #     - '6379:6379'
-  #   volumes:
-  #     - ./data:/data
-
-  # backend-mongo:
-  #   build:
-  #     context: ./backend-mongo
-  #   ports:
-  #     - 3344:3000
-  #   volumes:
-  #     - ./backend-mongo:/app
-  #     - /app/node_modules
-  #   environment:
-  #     - CHOKIDAR_USEPOLLING=true
