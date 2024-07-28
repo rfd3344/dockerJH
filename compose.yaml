@@ -1,6 +1,19 @@
 version: '3.8'
 
 services:
+  node-express:
+    build:
+      context: ./node-express
+    ports:
+      - 3345:3000
+    volumes:
+      - ./node-express:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    # depends_on:
+    #   - backend
+
   # react-vite:
   #   build:
   #     context: ./react-vite
@@ -16,22 +29,9 @@ services:
   #   build:
   #     context: ./react-nextjs
   #   ports:
-  #     - 3343:3000
+  #     - 3342:3000
   #   volumes:
   #     - ./react-nextjs:/app
   #     - /app/node_modules
   #   environment:
   #     - CHOKIDAR_USEPOLLING=true
-
-  node-express:
-    build:
-      context: ./node-express
-    ports:
-      - 3342:3000
-    volumes:
-      - ./node-express:/app
-      - /app/node_modules
-    environment:
-      - CHOKIDAR_USEPOLLING=true
-    # depends_on:
-    #   - backend
