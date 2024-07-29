@@ -6,10 +6,10 @@
 ### containers
 
 - node-express (main, connect with all db)
-- postgres
-- mongo
-- redis
-- elasticsearch
+- postgres sqlDB
+- mongo nosqlDB
+- redis cachingDB
+- elasticsearch searchDB
 
 - react-vite (sampleOnly)
 - react-nextjs (sampleOnly)
