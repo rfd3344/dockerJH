@@ -10,7 +10,7 @@
 - main, connect with all db
 
 ##### postgres sqlDB
-
+- Sequelize	or TypeORM
 - sequelize: https://sequelize.org/docs/v6/getting-started/
 
 ##### mongo nosqlDB
