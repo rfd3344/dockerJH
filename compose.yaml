@@ -14,24 +14,38 @@ services:
     # depends_on:
     #   - backend
 
-  # react-vite:
-  #   build:
-  #     context: ./react-vite
-  #   ports:
-  #     - 3341:3000
-  #   volumes:
-  #     - ./react-vite:/app # ./react-vite is host directory, /app is container directory
-  #     - /app/node_modules
-  #   environment:
-  #     - CHOKIDAR_USEPOLLING=true # watch file changes on host directory
 
-  # react-nextjs:
-  #   build:
-  #     context: ./react-nextjs
-  #   ports:
-  #     - 3342:3000
-  #   volumes:
-  #     - ./react-nextjs:/app
-  #     - /app/node_modules
-  #   environment:
-  #     - CHOKIDAR_USEPOLLING=true
+  # services:
+  #   postgres:
+  #     image: postgres:14-alpine
+  #     ports:
+  #       - 5432:5432
+  #     volumes:
+  #       - ~/apps/postgres:/var/lib/postgresql/data
+  #     environment:
+  #       - POSTGRES_PASSWORD=S3cret
+  #       - POSTGRES_USER=citizix_user
+  #       - POSTGRES_DB=citizix_db
+# docker run --name es01  -p 9200:9200 docker.elastic.co/elasticsearch/elasticsearch:8.14.3
+
+# react-vite:
+#   build:
+#     context: ./react-vite
+#   ports:
+#     - 3341:3000
+#   volumes:
+#     - ./react-vite:/app # ./react-vite is host directory, /app is container directory
+#     - /app/node_modules
+#   environment:
+#     - CHOKIDAR_USEPOLLING=true # watch file changes on host directory
+
+# react-nextjs:
+#   build:
+#     context: ./react-nextjs
+#   ports:
+#     - 3342:3000
+#   volumes:
+#     - ./react-nextjs:/app
+#     - /app/node_modules
+#   environment:
+#     - CHOKIDAR_USEPOLLING=true
