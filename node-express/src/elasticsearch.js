@@ -15,7 +15,7 @@ router.get('/check', async (req, res) => {
   res.send(resp);
 });
 
-router.get('/create', async (req, res) => {
+router.get('/index', async (req, res) => {
 
 
   const indexName = 'sample_index';
