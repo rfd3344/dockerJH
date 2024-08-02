@@ -2,58 +2,52 @@
 const express = require('express');
 var router = express.Router();
 
+module.exports = router;
 
-const redis = require('redis');
-// Create a Redis client
-const redisClient = redis.createClient({
-  host: 'localhost', // Redis server hostname (for Docker, use the service name if using Docker Compose)
-  port: 6379         // Redis server port
+router.get('/', function (req, res) {
+  res.send('redis: 111');
 });
 
-redisClient.on('connect', () => {
-  console.log('Connected to Redis');
+
+router.get('/check', async (req, res) => {
+  const status = await checkClient();
+  res.send('redis status: ' + status);
 });
 
-redisClient.on('error', (err) => {
-  console.error('Redis error:', err);
-});
 
-// Middleware to check if data exists in Redis cache
-const cacheMiddleware = (req, res, next) => {
-  next();
-  const { key } = req.query;
 
-  redisClient.get(key, (err, data) => {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    }
-    if (data) {
-      return res.status(200).json({ source: 'cache', data: JSON.parse(data) });
-    }
-    next();
+const { createClient } = require('redis');
+
+const checkClient = async () => {
+  const client = createClient({
+    url: 'redis://localhost:6379'
   });
-  // const { key } = req.query;
 
+  client.on('error', err => console.log('Redis Client Error', err));
+  await client.connect();
+
+  await client.set('status', 'Redis Connected');
+  const value = await client.get('status');
+  return value;
 };
 
-router.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+// TODOS: check how to create single instance for async function
+// const connect = async () => {
+//   // let client = null;
+//   // try {
 
-// Endpoint to get data, using the cache middleware
-router.get('/data', cacheMiddleware, async (req, res) => {
+//   const client = createClient({
+//     url: 'redis://localhost:6379'
+//   });
 
-  // const client = redis.createClient({
-  //   url: ' redis://localhost:6379',
-  // });
+//   client.on('error', err => { throw new Error(err); });
+//   await client.connect();
 
-  // client.on('error', function (error) {
-  //   console.error(error);
-  // });
+//   // } catch (e) {
+//   //   console.warn('error:', e);
+//   // }
+//   console.warn('client', client);
+//   return client;
+// };
 
-  // await client.set('bob', 'i am bob', redis.print);
-
-  res.send('Hello World!');
-});
-
-module.exports = router;
+// const instance = connect();

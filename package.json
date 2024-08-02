@@ -2,6 +2,7 @@
   "name": "docker-jh",
   "scripts": {
     "start": "npm run dev",
+    "test": "",
     "dev": "docker compose up"
   }
 }

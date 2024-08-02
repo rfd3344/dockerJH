@@ -11,7 +11,7 @@ router.get('/', function (req, res) {
 
 // todos
 
-router.get('/query', function (req, res) {
+router.get('/query', async (req, res) => {
   // test/query?key1=value1&key2=value2
   const { key, key2 } = req.query;
 
