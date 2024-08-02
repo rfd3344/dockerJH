@@ -11,7 +11,7 @@ router.get('/', function (req, res) {
 
 router.get('/check', async (req, res) => {
   const status = await checkClient();
-  res.send('redis status: ' + status);
+  res.send('check: ' + status);
 });
 
 
@@ -26,7 +26,7 @@ const checkClient = async () => {
   client.on('error', err => console.log('Redis Client Error', err));
   await client.connect();
 
-  await client.set('status', 'Redis Connected');
+  await client.set('status', 'Redis Connected 222');
   const value = await client.get('status');
   return value;
 };

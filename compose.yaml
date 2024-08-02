@@ -13,25 +13,24 @@ services:
   #     - CHOKIDAR_USEPOLLING=true
   #   # depends_on:
   #   #   - backend
-  postgres-db:
-    image: postgres:14.1-alpine
-    restart: always
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-    ports:
-      - '5432:5432'
-    volumes:
-      - db:/var/lib/postgresql/data
-      - ./db/init.sql:/docker-entrypoint-initdb.d/create_tables.sql
-  # cache:
-  #   image: redis:6.2-alpine
+  # postgres-db:
+  #   image: postgres:14.1-alpine
   #   restart: always
+  #   environment:
+  #     - POSTGRES_USER=postgres
+  #     - POSTGRES_PASSWORD=postgres
   #   ports:
-  #     - '6379:6379'
-  #   command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+  #     - '5432:5432'
   #   volumes:
-  #     - cache:/data
+  #     - db:/var/lib/postgresql/data
+  #     - ./db/init.sql:/docker-entrypoint-initdb.d/create_tables.sql
+  redis-db:
+    image: redis/redis-stack-server:latest
+    restart: always
+    ports:
+      - '6379:6379'
+    volumes:
+      - ~/redis:/data
   # redis-db:
   #   # image: redis:latest
   #   # image: redis:7.4.0-alpine
@@ -41,13 +40,13 @@ services:
   #     - '6379:6379'
   #   volumes:
   #     - redis:/data
-    # volumes:
-    #   - /path/to/local/dаta:/root/redis
-    #   - /path/to/local/redis.conf:/usr/local/etc/redis/redis.conf
-    # environment:
-    #   - REDIS_PASSWORD=my-password
-    #   - REDIS_PORT=6379
-    #   - REDIS_DATABASES=16
+  # volumes:
+  #   - /path/to/local/dаta:/root/redis
+  #   - /path/to/local/redis.conf:/usr/local/etc/redis/redis.conf
+  # environment:
+  #   - REDIS_PASSWORD=my-password
+  #   - REDIS_PORT=6379
+  #   - REDIS_DATABASES=16
 
   # services:
   #   postgres:
