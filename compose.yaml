@@ -1,18 +1,22 @@
-version: '3.8'
+# version: '3.8'
 
 services:
-  # node-express:
-  #   build:
-  #     context: ./node-express
-  #   ports:
-  #     - 3345:3000
-  #   volumes:
-  #     - ./node-express:/app
-  #     - /app/node_modules
-  #   environment:
-  #     - CHOKIDAR_USEPOLLING=true
-  #   # depends_on:
-  #   #   - backend
+  node-express:
+    build:
+      context: ./node-express
+    ports:
+      - 3345:3000
+    volumes:
+      - ./node-express:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    deploy:
+      resources:
+        limits:
+          memory: 0.5G
+    # depends_on:
+    #   - backend
   # postgres-db:
   #   image: postgres:14.1-alpine
   #   restart: always
@@ -27,26 +31,13 @@ services:
   redis-db:
     image: redis/redis-stack-server:latest
     restart: always
+    # command: --port 6380
     ports:
       - '6379:6379'
+    expose:
+      - '6379'
     volumes:
       - ~/redis:/data
-  # redis-db:
-  #   # image: redis:latest
-  #   # image: redis:7.4.0-alpine
-  #   image: redis:6.2-alpine
-  #   # restart: always
-  #   ports:
-  #     - '6379:6379'
-  #   volumes:
-  #     - redis:/data
-  # volumes:
-  #   - /path/to/local/dаta:/root/redis
-  #   - /path/to/local/redis.conf:/usr/local/etc/redis/redis.conf
-  # environment:
-  #   - REDIS_PASSWORD=my-password
-  #   - REDIS_PORT=6379
-  #   - REDIS_DATABASES=16
 
   # services:
   #   postgres:

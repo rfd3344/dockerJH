@@ -3,6 +3,7 @@
   "scripts": {
     "start": "npm run dev",
     "test": "",
-    "dev": "docker compose up"
+    "stats": "docker stats",
+    "dev": "docker compose up -d"
   }
 }
