@@ -10,7 +10,7 @@ export default function App() {
 
   return (
     <section>
-
+      <h1> Vite React</h1>
       <div>
         <button onClick={() => setCount((count) => count + 1)}>
           Counter {count}
