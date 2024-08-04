@@ -17,7 +17,7 @@ services:
     ports:
       - '6379:6379'
     expose:
-      - '6379'
+      - 6379
     environment:
       - CHOKIDAR_USEPOLLING=true
     volumes:

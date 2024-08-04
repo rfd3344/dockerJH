@@ -8,12 +8,17 @@ services:
       - ./node-express:/app
       - /app/node_modules
     environment:
-      - CHOKIDAR_USEPOLLING=true
+      CHOKIDAR_USEPOLLING: true
+      POSTGRESS_HOST: postgres-db
+      POSTGRESS_PORT: 5432
+      REDIS_HOST: redis-db
+      REDIS_PORT: 6379
     deploy:
       resources:
         limits:
           memory: 0.5G
     # depends_on:
+    #   - postgres-db
     #   - redis-db
 
   react-vite:
@@ -39,5 +44,5 @@ services:
       - CHOKIDAR_USEPOLLING=true
 
 networks:
-  backend-network:
+  outside:
     external: true

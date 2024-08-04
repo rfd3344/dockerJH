@@ -1,15 +1,15 @@
 services:
   node-express:
-    # profiles: [ServiceDisabled]
+    # profiles: [service-disabled]
 
   react-vite:
-    # profiles: [ServiceDisabled]
+    profiles: [service-disabled]
 
   react-nextjs:
-    # profiles: [ServiceDisabled]
+    profiles: [service-disabled]
 
   postgres-db:
-    # profiles: [ServiceDisabled]
+    # profiles: [service-disabled]
 
   redis-db:
-    # profiles: [ServiceDisabled]
+    # profiles: [service-disabled]

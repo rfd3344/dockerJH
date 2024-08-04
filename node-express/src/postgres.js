@@ -15,12 +15,16 @@ router.get('/test', async (req, res) => {
 });
 
 
-
-
 const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize('postgres://postgres:postgres@postgres-db:5432/'); // Example for postgres
-
+const sequelize = new Sequelize({
+  host: process.env.POSTGRESS_HOST || 'localhost',
+  port: process.env.POSTGRESS_PORT || '5432',
+  dialect: 'postgres',
+  database: 'postgres',
+  username: 'postgres',
+  password: 'postgres',
+});
 
 const checkClient = async () => {
   try {
