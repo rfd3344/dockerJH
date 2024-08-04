@@ -9,7 +9,7 @@ router.get('/', function (req, res) {
   res.send('elasticsearch: 222');
 });
 
-router.get('/check', async (req, res) => {
+router.get('/test', async (req, res) => {
   const resp = await checkConnection();
 
   res.send(resp);

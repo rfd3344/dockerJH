@@ -1,4 +1,4 @@
-# version: '3.8'
+# version: '3.7'
 
 services:
   node-express:
@@ -16,28 +16,32 @@ services:
         limits:
           memory: 0.5G
     # depends_on:
-    #   - backend
-  # postgres-db:
-  #   image: postgres:14.1-alpine
-  #   restart: always
-  #   environment:
-  #     - POSTGRES_USER=postgres
-  #     - POSTGRES_PASSWORD=postgres
-  #   ports:
-  #     - '5432:5432'
-  #   volumes:
-  #     - db:/var/lib/postgresql/data
-  #     - ./db/init.sql:/docker-entrypoint-initdb.d/create_tables.sql
-  redis-db:
-    image: redis/redis-stack-server:latest
-    restart: always
-    # command: --port 6380
+    #   - redis-db
+
+  postgres-db:
+    image: postgres:14-alpine
     ports:
-      - '6379:6379'
+      - 5432:5432
     expose:
-      - '6379'
+      - 5432
     volumes:
-      - ~/redis:/data
+      - ~/postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  # redis-db:
+  #   image: redis/redis-stack-server:latest
+  #   restart: always
+  #   # command: --port 6379
+  #   ports:
+  #     - '6379:6379'
+  #   expose:
+  #     - '6379'
+  #   environment:
+  #     - CHOKIDAR_USEPOLLING=true
+  #   volumes:
+  #     - ~/redis:/data
 
   # services:
   #   postgres:
@@ -50,18 +54,18 @@ services:
   #       - POSTGRES_PASSWORD=S3cret
   #       - POSTGRES_USER=citizix_user
   #       - POSTGRES_DB=citizix_db
-# docker run --name es01  -p 9200:9200 docker.elastic.co/elasticsearch/elasticsearch:8.14.3
+  # docker run --name es01  -p 9200:9200 docker.elastic.co/elasticsearch/elasticsearch:8.14.3
 
-# react-vite:
-#   build:
-#     context: ./react-vite
-#   ports:
-#     - 3341:3000
-#   volumes:
-#     - ./react-vite:/app # ./react-vite is host directory, /app is container directory
-#     - /app/node_modules
-#   environment:
-#     - CHOKIDAR_USEPOLLING=true # watch file changes on host directory
+  react-vite:
+    build:
+      context: ./react-vite
+    ports:
+      - 3341:3000
+    volumes:
+      - ./react-vite:/app # ./react-vite is host directory, /app is container directory
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true # watch file changes on host directory
 
 # react-nextjs:
 #   build:
@@ -73,3 +77,7 @@ services:
 #     - /app/node_modules
 #   environment:
 #     - CHOKIDAR_USEPOLLING=true
+
+# networks:
+#   backend-network:
+#     external: true

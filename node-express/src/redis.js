@@ -9,7 +9,7 @@ router.get('/', function (req, res) {
 });
 
 
-router.get('/check', async (req, res) => {
+router.get('/test', async (req, res) => {
   const status = await checkClient();
   res.send('check: ' + status);
 });
@@ -19,10 +19,14 @@ router.get('/check', async (req, res) => {
 const { createClient } = require('redis');
 
 const client = createClient({
-  url: 'redis://localhost:6379'
+  url: 'redis://0.0.0.0:6379'
 });
-client.on('error', err => console.log('Redis Client Error', err));
+client.on('error', err => {
+  console.log('RedisError', err);
+  client.disconnect();
+});
 client.connect();
+
 
 const checkClient = async () => {
 

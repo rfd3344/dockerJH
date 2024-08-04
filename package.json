@@ -4,6 +4,7 @@
     "start": "npm run dev",
     "test": "",
     "stats": "docker stats",
-    "dev": "docker compose up -d"
+    "dev": "docker compose up",
+    "dev:D": "docker compose up -d"
   }
 }
