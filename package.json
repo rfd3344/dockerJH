@@ -1,10 +1,13 @@
 {
+  "//": "Comments: this project is to test docker",
   "name": "docker-jh",
   "scripts": {
     "start": "npm run dev",
     "test": "",
     "stats": "docker stats",
-    "dev": "docker compose up",
-    "dev:D": "docker compose up -d"
+    "//": "last file(compose.diable.yml) will override others",
+    "dev": "docker compose -f compose.yml -f compose.db.yml -f compose.diable.yml up",
+    "//": "running dev in silence mode",
+    "dev:silence": "npm run dev up -d"
   }
 }
