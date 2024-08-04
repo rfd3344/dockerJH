@@ -2,6 +2,7 @@
 
 services:
   node-express:
+    profiles: ['ServiceDisabled']
     build:
       context: ./node-express
     ports:
@@ -17,8 +18,8 @@ services:
           memory: 0.5G
     # depends_on:
     #   - redis-db
-
   postgres-db:
+    profiles: ['ServiceDisabled']
     image: postgres:14-alpine
     ports:
       - 5432:5432
@@ -30,33 +31,22 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
 
-  # redis-db:
-  #   image: redis/redis-stack-server:latest
-  #   restart: always
-  #   # command: --port 6379
-  #   ports:
-  #     - '6379:6379'
-  #   expose:
-  #     - '6379'
-  #   environment:
-  #     - CHOKIDAR_USEPOLLING=true
-  #   volumes:
-  #     - ~/redis:/data
-
-  # services:
-  #   postgres:
-  #     image: postgres:14-alpine
-  #     ports:
-  #       - 5432:5432
-  #     volumes:
-  #       - ~/apps/postgres:/var/lib/postgresql/data
-  #     environment:
-  #       - POSTGRES_PASSWORD=S3cret
-  #       - POSTGRES_USER=citizix_user
-  #       - POSTGRES_DB=citizix_db
-  # docker run --name es01  -p 9200:9200 docker.elastic.co/elasticsearch/elasticsearch:8.14.3
+  redis-db:
+    profiles: ['ServiceDisabled']
+    image: redis/redis-stack-server:latest
+    restart: always
+    # command: --port 6379
+    ports:
+      - '6379:6379'
+    expose:
+      - '6379'
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - ~/redis:/data
 
   react-vite:
+    profiles: ['ServiceDisabled']
     build:
       context: ./react-vite
     ports:
@@ -67,17 +57,18 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true # watch file changes on host directory
 
-# react-nextjs:
-#   build:
-#     context: ./react-nextjs
-#   ports:
-#     - 3342:3000
-#   volumes:
-#     - ./react-nextjs:/app
-#     - /app/node_modules
-#   environment:
-#     - CHOKIDAR_USEPOLLING=true
+  react-nextjs:
+    profiles: ['ServiceDisabled']
+    build:
+      context: ./react-nextjs
+    ports:
+      - 3342:3000
+    volumes:
+      - ./react-nextjs:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
 
-# networks:
-#   backend-network:
-#     external: true
+networks:
+  backend-network:
+    external: true
