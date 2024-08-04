@@ -17,9 +17,12 @@ router.get('/test', async (req, res) => {
 
 const { Sequelize } = require('sequelize');
 
+const hostName = process.env.POSTGRESS_HOST || 'localhost';
+const hostPort = process.env.POSTGRESS_PORT || '5432';
+
 const sequelize = new Sequelize({
-  host: process.env.POSTGRESS_HOST || 'localhost',
-  port: process.env.POSTGRESS_PORT || '5432',
+  host: hostName,
+  port: hostPort,
   dialect: 'postgres',
   database: 'postgres',
   username: 'postgres',
@@ -29,9 +32,10 @@ const sequelize = new Sequelize({
 const checkClient = async () => {
   try {
     const resp = await sequelize.authenticate();
-    console.log('ConnectSuccess', resp);
+    console.log('ConnectSuccess');
     return 'ConnectSuccess';
   } catch (error) {
-    console.error('ConnectError:', error);
+    console.error('ConnectError:');
+    // console.error( error);
   }
 };

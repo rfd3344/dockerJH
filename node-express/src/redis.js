@@ -28,7 +28,7 @@ const client = createClient({
 });
 client.on('error', err => {
   console.error('RedisError: Failed to connect');
-  console.error(err);
+  // console.error(err);
   client.disconnect();
 });
 client.connect();

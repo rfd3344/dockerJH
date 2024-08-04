@@ -9,7 +9,10 @@ services:
     profiles: [service-disabled]
 
   postgres-db:
+    profiles: [service-disabled]
+
+  mongo-db:
     # profiles: [service-disabled]
 
   redis-db:
-    # profiles: [service-disabled]
+    profiles: [service-disabled]
