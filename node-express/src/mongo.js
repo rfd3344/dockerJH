@@ -10,29 +10,51 @@ router.get('/', function (req, res) {
 
 
 router.get('/test', async (req, res) => {
-  const status = await checkClient();
-  res.send(status);
+  const resp = await checkClient();
+  res.send(resp);
+});
+
+router.get('/add', async (req, res) => {
+  const resp = await addDoc({ a: 1111 });
+  res.send(resp);
+});
+
+router.get('/get', async (req, res) => {
+  const resp = await findDocs();
+  res.send(resp);
 });
 
 
 const { MongoClient } = require('mongodb');
 
 
-const hostName = process.env.REDIS_HOST || 'localhost';
-const hostPort = process.env.REDIS_PORT || '6379';
+const hostName = process.env.MONGO_HOST || 'localhost';
+const hostPort = process.env.MONGO_PORT || '27017';
 
-
-
-console.warn('hostName', hostName, hostPort);
 const client = new MongoClient(`mongodb://${hostName}:${hostPort}`);
 
 const checkClient = async () => {
-
   const resp = await client.connect()
-    .catch(err => console.error('ConnectError:', err))
+    .then(() => 'MongoConnected>> ')
+    .catch(err => 'MongoConnectError>> ')
     .finally(() => client.close());
 
+  return resp;
+};
+
+const addDoc = async (doc = {}) => {
+  await client.connect();
+  const collection = client.db().collection('collection');
+  const resp = await collection.insertOne(doc);
 
   return resp;
+};
 
+
+const findDocs = async (filter = {}) => {
+  await client.connect();
+  const collection = client.db().collection('collection');
+  const resp = await collection.find(filter).toArray();
+
+  return resp;
 };

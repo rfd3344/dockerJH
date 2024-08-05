@@ -4,7 +4,8 @@
   "scripts": {
     "start": "npm run dev",
     "test": "",
-    "stats": "docker stats",
+    "//": "check status of all containers",
+    "stats": "docker stats --no-stream",
     "//": "last file(compose.diable.yml) will override others",
     "dev": "docker compose -f compose.yml -f compose.db.yml -f compose.diable.yml up",
     "//": "running dev in silence mode",
