@@ -11,7 +11,7 @@ router.get('/', function (req, res) {
 
 router.get('/test', async (req, res) => {
   const status = await checkClient();
-  res.send('check: ' + status);
+  res.send(status);
 });
 
 
@@ -27,8 +27,7 @@ const client = createClient({
   url: `redis://${hostName}:${hostPort}`
 });
 client.on('error', err => {
-  console.error('RedisError: Failed to connect');
-  // console.error(err);
+  console.error('RedisConnectError>> ');
   client.disconnect();
 });
 client.connect();

@@ -5,7 +5,6 @@ var router = express.Router();
 module.exports = router;
 
 router.get('/', function (req, res) {
-
   res.send('elasticsearch: 222');
 });
 
@@ -57,14 +56,10 @@ router.get('/search', async (req, res) => {
 
 const { Client } = require('@elastic/elasticsearch');
 const fs = require('node:fs');
-// const client = new Client({ node: 'http://localhost:9200' });
 
 
 const client = new Client({
   node: 'https://localhost:9200',
-  // cloud: {
-  //   id: 'http://localhost:9200'
-  // },
   auth: {
     username: 'elastic',
     password: 'D4=K4L7DLi*lwGBT4gtI'
@@ -75,16 +70,6 @@ const client = new Client({
   }
 });
 
-// const client = new Client({
-//   node: 'https://test.es.ap-southeast-2.aws.found.io',
-//   cloud: {
-//     id: 'test:YXAtc291dGhlYXN0LTIuYXdzLmZvdW5kLmlvOjQ0MyRkMDdmNDgwOTkxYWE0ZDA2ODJhMTY2ZDFhYTMwYTMxOSQzMGU5MTFiMDA2YTQ0MTUwODI0NmUwN2M2ZTVjNzkzNA=='
-//   },
-//   auth: {
-//     username: 'elastic',
-//     password: '9RWbfv78tXxycMVNXm5psllm'
-//   }
-// });
 
 async function checkConnection() {
   try {

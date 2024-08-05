@@ -10,8 +10,8 @@ router.get('/', function (req, res) {
 
 
 router.get('/test', async (req, res) => {
-  const status = await checkClient();
-  res.send(status);
+  const resp = await checkClient();
+  res.send(resp);
 });
 
 
@@ -32,10 +32,10 @@ const sequelize = new Sequelize({
 const checkClient = async () => {
   try {
     const resp = await sequelize.authenticate();
-    console.log('ConnectSuccess');
-    return 'ConnectSuccess';
+    // console.log('SequelizeConnectSuccess', resp);
+    return 'SequelizeConnectSuccess>>';
   } catch (error) {
-    console.error('ConnectError:');
-    // console.error( error);
+    // console.error('SequelizeConnectError>>', error);
+    return 'SequelizeConnectError>>';
   }
 };
