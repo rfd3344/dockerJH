@@ -19,7 +19,7 @@ router.get('/test', async (req, res) => {
 });
 
 router.get('/add', async (req, res) => {
-  const resp = await addDoc({ a: 1111 });
+  const resp = await addDoc({ time: Date() });
   res.send(resp);
 });
 
