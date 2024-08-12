@@ -2,10 +2,13 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
+var cors = require('cors');
+app.use(cors());
+
+
 app.get('/', (req, res) => {
   res.send('Hello World! 222');
 });
-
 
 app.use('/test', require('./test'));
 app.use('/postgres', require('./postgres'));
