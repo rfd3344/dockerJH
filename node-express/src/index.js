@@ -5,8 +5,11 @@ const port = 3000;
 var cors = require('cors');
 app.use(cors());
 
+var cookieParser = require('cookie-parser')
+app.use(cookieParser())
 
 app.get('/', (req, res) => {
+  console.warn(req.cookies)
   res.send('Hello World! 222');
 });
 
