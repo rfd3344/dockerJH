@@ -11,8 +11,11 @@ services:
   postgres-db:
     # profiles: [service-disabled]
 
-  mongo-db:
+  pgadmin:
     profiles: [service-disabled]
 
+  mongo-db:
+    # profiles: [service-disabled]
+
   redis-db:
-    profiles: [service-disabled]
+    # profiles: [service-disabled]

@@ -1,6 +1,7 @@
 services:
   postgres-db:
-    image: postgres:14-alpine
+    # image: postgres:14-alpine
+    image: postgres
     hostname: 0.0.0.0
     restart: always
     ports:
@@ -8,11 +9,23 @@ services:
     expose:
       - 5432
     volumes:
-      - ~/postgres:/var/lib/postgresql/data
+      - ./postgres-volume:/var/lib/postgresql/data
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=postgres
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: demo_db
+
+  pgadmin:
+    container_name: container-pgadmin
+    image: dpage/pgadmin4
+    depends_on:
+      - postgres-db
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    restart: unless-stopped
 
   mongo-db:
     image: mongodb/mongodb-community-server:latest
@@ -22,7 +35,7 @@ services:
     expose:
       - 27017
     volumes:
-      - ~/mongo:/data/db
+      - ./mongo-volume:/data/db
 
   redis-db:
     image: redis/redis-stack-server:latest
@@ -32,4 +45,4 @@ services:
     expose:
       - 6379
     volumes:
-      - ~/redis:/data
+      - ./redis-volume:/data
