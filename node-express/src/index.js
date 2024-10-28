@@ -5,13 +5,16 @@ const port = 3000;
 var cors = require('cors');
 app.use(cors());
 
-var cookieParser = require('cookie-parser')
-app.use(cookieParser())
+var cookieParser = require('cookie-parser');
+app.use(cookieParser());
 
 app.get('/', (req, res) => {
-  console.warn(req.cookies)
-  res.send('Hello World! 222');
+  // console.warn(req.cookies);
+  res.send(['aaa00', 'bbb', 'cccc 111']);
 });
+
+
+
 
 app.use('/test', require('./test'));
 app.use('/postgres', require('./postgres'));
