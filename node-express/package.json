@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "nodemon src/index.js",
-    "nodemon": "nodemon src/index.js"
+    "dev": "nodemon src/index.js"
   },
   "dependencies": {
     "@elastic/elasticsearch": "^8.14.0",
